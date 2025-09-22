@@ -82,24 +82,30 @@ fun LanguageScreen(navController: NavController) {
                 size = 16.sp
             )
         }
-
-        languages.forEach { language ->
-            Button(
-                onClick = {
-
-                    navController.navigate("login")
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = CustomColor.mediumGray),
-            )
-
-            {
-                Text(text = language)
+    }
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Column(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .fillMaxWidth(0.5f)
+                .padding(end = 50.dp, bottom = 150.dp),
+            horizontalAlignment = Alignment.End
+        ) {
+            languages.forEach { language ->
+                Button(
+                    onClick = {
+                        navController.navigate("login")
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 30.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = CustomColor.mediumGray),
+                ) {
+                    Text(text = language)
+                }
             }
         }
-
-
     }
 }
