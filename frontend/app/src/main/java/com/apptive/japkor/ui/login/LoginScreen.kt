@@ -7,10 +7,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -34,7 +36,7 @@ fun LoginScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .safeContentPadding(),
+            .padding(WindowInsets.safeDrawing.asPaddingValues()),
         contentAlignment = Alignment.Center
     ) {
         // 좌측 상단 뒤로가기 아이콘 추가
@@ -57,12 +59,11 @@ fun LoginScreen(navController: NavController) {
         ) {
             CustomText(
                 text = "앱이름",
-                type = CustomTextType.headlineSmall
+                type = CustomTextType.headlineSmall,
             )
             CustomText(
                 text = "여기 앱이름에 대한 설명이에요. 슬로건 같은 한 문장.",
-                type = CustomTextType.bodyMedium,
-                color = CustomColor.mediumGray
+                color = CustomColor.mediumGray,
             )
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -79,7 +80,7 @@ fun LoginScreen(navController: NavController) {
             ) {
                 CustomText(
                     text = "로그인",
-                    type = CustomTextType.titleMedium
+                    type = CustomTextType.titleMedium,
                 )
 
                 GoogleSignUpButton(
