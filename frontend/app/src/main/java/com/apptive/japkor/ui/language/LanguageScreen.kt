@@ -2,6 +2,7 @@ package com.apptive.japkor.ui.language
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,14 +15,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -31,7 +30,6 @@ import com.apptive.japkor.ui.theme.CustomColor
 
 @Composable
 fun LanguageScreen(navController: NavController) {
-    val languages = listOf("한국어", "日本語")
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -93,19 +91,31 @@ fun LanguageScreen(navController: NavController) {
                 .padding(end = 50.dp, bottom = 150.dp),
             horizontalAlignment = Alignment.End
         ) {
-            languages.forEach { language ->
-                Button(
-                    onClick = {
-                        navController.navigate("login")
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 30.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = CustomColor.mediumGray),
-                ) {
-                    Text(text = language)
-                }
-            }
+            CustomText(
+                text = "縁",
+                type = CustomTextType.STFangSong,
+                color = CustomColor.white,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 30.dp)
+                    .clickable { navController.navigate("login") },
+
+                textAlign = TextAlign.Center,
+                size = 40.sp
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            CustomText(
+                text = "인연",
+                type = CustomTextType.mainRegularLarge,
+                color = CustomColor.white,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 30.dp)
+                    .clickable { navController.navigate("login") },
+
+                textAlign = TextAlign.Center,
+                size = 30.sp
+            )
         }
     }
 }
