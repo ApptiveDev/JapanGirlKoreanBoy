@@ -101,7 +101,8 @@ fun LanguageScreen(navController: NavController) {
                     .clickable { navController.navigate("login") },
 
                 textAlign = TextAlign.Center,
-                size = 40.sp
+                size = 40.sp,
+                underline = true
             )
             Spacer(modifier = Modifier.height(16.dp))
             CustomText(
@@ -114,7 +115,8 @@ fun LanguageScreen(navController: NavController) {
                     .clickable { navController.navigate("login") },
 
                 textAlign = TextAlign.Center,
-                size = 30.sp
+                size = 30.sp,
+                underline = true
             )
         }
     }

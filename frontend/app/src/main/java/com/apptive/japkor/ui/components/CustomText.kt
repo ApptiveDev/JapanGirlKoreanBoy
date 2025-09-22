@@ -10,6 +10,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.apptive.japkor.R
@@ -189,10 +190,13 @@ fun CustomText(
     style: TextStyle? = null,
     color: Color = Color.Unspecified,
     textAlign: TextAlign? = null,
-    size: TextUnit? = null
+    size: TextUnit? = null,
+    underline: Boolean = false
 ) {
     val baseStyle = style ?: getTextStyle(type)
-    val appliedStyle = if (size != null) baseStyle.copy(fontSize = size) else baseStyle
+    val finalStyle = if (size != null) baseStyle.copy(fontSize = size) else baseStyle
+    val appliedStyle =
+        if (underline) finalStyle.copy(textDecoration = TextDecoration.Underline) else finalStyle
     Text(
         text = text,
         modifier = modifier,
