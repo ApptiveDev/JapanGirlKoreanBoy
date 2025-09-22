@@ -31,6 +31,10 @@ val GowunBatnag = FontFamily(
     Font(R.font.gowun_batang_bold, FontWeight.W700)
 )
 
+val STFangSong = FontFamily(
+    Font(R.font.stfangsong_regular, FontWeight.W400)
+)
+
 enum class CustomTextType {
     displayLarge, displayMedium, displaySmall,
     headlineLarge, headlineMedium, headlineSmall,
@@ -38,7 +42,8 @@ enum class CustomTextType {
     bodyLarge, bodyMedium, bodySmall,
     labelLarge, labelMedium, labelSmall,
     mainBoldLarge, mainBoldMedium, mainBoldSmall,
-    mainRegularLarge, mainRegularMedium, mainRegularSmall
+    mainRegularLarge, mainRegularMedium, mainRegularSmall,
+    STFangSong
 }
 
 private fun getTextStyle(type: CustomTextType): TextStyle = when (type) {
@@ -167,6 +172,12 @@ private fun getTextStyle(type: CustomTextType): TextStyle = when (type) {
         fontSize = 14.sp,
         fontWeight = FontWeight.W400,
         fontFamily = GowunBatnag
+    )
+
+    CustomTextType.STFangSong -> TextStyle(
+        fontSize = 14.sp,
+        fontWeight = FontWeight.W400,
+        fontFamily = STFangSong
     )
 }
 
