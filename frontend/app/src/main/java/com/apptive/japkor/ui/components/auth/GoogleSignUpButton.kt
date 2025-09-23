@@ -8,12 +8,10 @@ import androidx.activity.ComponentActivity
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -54,11 +52,13 @@ fun GoogleSignUpButton(onSignedIn: () -> Unit) {
     Column {
         Button(
             modifier = Modifier
+                .size(20.dp) // 버튼 크기
                 .border(
                     width = 1.dp,
-                    color = CustomColor.lightGray,
-                    shape = RoundedCornerShape(8.dp)
+                    color = CustomColor.gray200,
+                    shape = CircleShape
                 ),
+            shape = CircleShape, // 완전한 원
             onClick = {
 
                 coroutineScope.launch {
@@ -136,18 +136,15 @@ fun GoogleSignUpButton(onSignedIn: () -> Unit) {
                     }
                 }
             },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.White)
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+            contentPadding = PaddingValues(0.dp) // 내부 패딩 제거
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_google_logo),
-                    contentDescription = "Google Logo",
-                    tint = Color.Unspecified,
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "Google 계정으로 로그인", color = Color.Black)
-            }
+            Icon(
+                painter = painterResource(id = R.drawable.ic_google),
+                contentDescription = "Google Logo",
+                tint = Color.Unspecified,
+                modifier = Modifier.size(20.dp) // 아이콘을 버튼에 맞게 크게
+            )
         }
     }
 }
