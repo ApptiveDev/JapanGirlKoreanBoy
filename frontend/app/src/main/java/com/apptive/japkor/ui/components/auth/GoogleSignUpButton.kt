@@ -52,7 +52,7 @@ fun GoogleSignUpButton(onSignedIn: () -> Unit) {
     Column {
         Button(
             modifier = Modifier
-                .size(20.dp) // 버튼 크기
+                .size(30.dp) // 버튼 크기
                 .border(
                     width = 1.dp,
                     color = CustomColor.gray200,
@@ -137,12 +137,12 @@ fun GoogleSignUpButton(onSignedIn: () -> Unit) {
                 }
             },
             colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-            contentPadding = PaddingValues(0.dp) // 내부 패딩 제거
+            contentPadding = PaddingValues(1.dp) // 내부 패딩 제거
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_google),
                 contentDescription = "Google Logo",
-                tint = Color.Unspecified,
+                tint = CustomColor.gray400,
                 modifier = Modifier.size(20.dp) // 아이콘을 버튼에 맞게 크게
             )
         }

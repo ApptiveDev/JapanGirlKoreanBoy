@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -15,9 +16,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.apptive.japkor.R
 import com.apptive.japkor.ui.components.CustomText
 import com.apptive.japkor.ui.components.CustomTextType
 import com.apptive.japkor.ui.components.auth.GoogleSignUpButton
@@ -53,7 +60,7 @@ fun LoginScreen(navController: NavController) {
                 modifier = Modifier.padding(horizontal = 20.dp)
             ) {
                 Image(
-                    painter = painterResource(id = com.apptive.japkor.R.drawable.ic_back),
+                    painter = painterResource(id = R.drawable.ic_back),
                     contentDescription = "뒤로가기",
                     modifier = Modifier.width(20.dp)
                 )
@@ -153,12 +160,12 @@ fun LoginScreen(navController: NavController) {
                     },
                     visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation()
                 )
-                androidx.compose.material3.Button(
+                Button(
                     onClick = { /* TODO: 로그인 처리 */ },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(50.dp),
-                    colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                    colors = ButtonDefaults.buttonColors(
                         containerColor = CustomColor.gray300
                     ),
                     shape = RoundedCornerShape(10.dp)
@@ -224,12 +231,80 @@ fun LoginScreen(navController: NavController) {
                 color = CustomColor.gray300
             )
             Spacer(modifier = Modifier.height(1.dp))
-            GoogleSignUpButton(
-                onSignedIn = {
-                    android.util.Log.d("LoginScreen", "onSignedIn 콜백 호출됨")
-                    navController.navigate("requiredinfo")
-                },
-            )
+            Row {
+                GoogleSignUpButton(
+                    onSignedIn = {
+                        android.util.Log.d("LoginScreen", "onSignedIn 콜백 호출됨")
+                        navController.navigate("requiredinfo")
+                    },
+                )
+                Spacer(modifier = Modifier.width(30.dp))
+                Button(
+                    onClick = { /* TODO: 원하는 동작 추가 */ },
+                    modifier = Modifier
+                        .size(30.dp) // 버튼 크기 크게
+                        .border(
+                            width = 1.dp,
+                            color = CustomColor.gray200,
+                            shape = CircleShape
+                        )
+                        .background(color = CustomColor.white),
+                    shape = CircleShape,
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                    contentPadding = PaddingValues(1.dp) // 내부 패딩 제거
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_facebook),
+                        contentDescription = "Google Logo",
+                        tint = CustomColor.gray400,
+                        modifier = Modifier.size(20.dp) // 아이콘 크게
+                    )
+                }
+                Spacer(modifier = Modifier.width(30.dp))
+                Button(
+                    onClick = { /* TODO: 원하는 동작 추가 */ },
+                    modifier = Modifier
+                        .size(30.dp) // 버튼 크기 크게
+                        .border(
+                            width = 1.dp,
+                            color = CustomColor.gray200,
+                            shape = CircleShape
+                        )
+                        .background(color = CustomColor.white),
+                    shape = CircleShape,
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                    contentPadding = PaddingValues(1.dp) // 내부 패딩 제거
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_twitter),
+                        contentDescription = "Google Logo",
+                        tint = CustomColor.gray400,
+                        modifier = Modifier.size(20.dp) // 아이콘 크게
+                    )
+                }
+                Spacer(modifier = Modifier.width(30.dp))
+                Button(
+                    onClick = { /* TODO: 원하는 동작 추가 */ },
+                    modifier = Modifier
+                        .size(30.dp) // 버튼 크기 크게
+                        .border(
+                            width = 1.dp,
+                            color = CustomColor.gray200,
+                            shape = CircleShape
+                        )
+                        .background(color = CustomColor.white),
+                    shape = CircleShape,
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                    contentPadding = PaddingValues(1.dp) // 내부 패딩 제거
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_email),
+                        contentDescription = "Google Logo",
+                        tint = CustomColor.gray400,
+                        modifier = Modifier.size(20.dp) // 아이콘 크게
+                    )
+                }
+            }
             Spacer(modifier = Modifier.height(50.dp))
             Row(
                 modifier = Modifier
