@@ -40,6 +40,7 @@ fun RequiredInfoScreen(
     onSubmit: (name: String, email: String) -> Unit = { _, _ -> },
     currentStep: Int = 1
 ) {
+    val selectedOption = remember { mutableStateOf("한국 남성") }
 
     Column(
         modifier = Modifier
@@ -71,7 +72,7 @@ fun RequiredInfoScreen(
         StepIndicator(currentStep = currentStep)
         Spacer(modifier = Modifier.height(24.dp))
 
-        var selectedOption = remember { mutableStateOf("한국인 남성") }
+
 
         Column(
             modifier = Modifier
@@ -129,18 +130,20 @@ fun RequiredInfoScreen(
                 )
             }
             Spacer(modifier = Modifier.height(80.dp))
+            val selectedText = if (selectedOption.value == "한국 남성") {
+                "‘한국 남성'를 선택하셨습니다.\n\n‘한국 남성'를 선택하는 경우,\n‘일본 여성'에게 프로필이 먼저 전달됩니다."
+            } else {
+                "‘일본 여성'를 선택하셨습니다.\n\n‘일본 여성'를 선택하는 경우,\n‘한국 남성'에게 프로필이 먼저 전달됩니다."
+            }
             CustomText(
-                text = "‘한국 남성'를 선택하셨습니다.\n" +
-                        "\n" +
-                        "‘한국 남성'를 선택하는 경우,\n" +
-                        "‘일본 여성'에게 프로필이 먼저 전달됩니다.",
+                text = selectedText,
                 color = CustomColor.gray300,
                 type = CustomTextType.bodyLarge,
             )
             Spacer(modifier = Modifier.height(30.dp))
         }
         Button(
-            onClick = { navController.navigate("") },
+            onClick = { },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
