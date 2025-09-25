@@ -50,6 +50,7 @@ fun LoginScreen(navController: NavController) {
         horizontalAlignment = Alignment.Start
     ) {
         // 헤더: 좌측 상단 뒤로가기 아이콘 + 구분선 + 언어 선택
+        Spacer(modifier = Modifier.height(30.dp))
         Column(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -98,7 +99,7 @@ fun LoginScreen(navController: NavController) {
         ) {
             CustomText(
                 text = "어서오세요\nen 입니다",
-                type = CustomTextType.mainRegularSmall,
+                type = CustomTextType.mainRegularLarge,
                 size = 32.sp
             )
             CustomText(
@@ -327,7 +328,7 @@ fun LoginScreen(navController: NavController) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(10.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -353,7 +354,7 @@ fun LoginScreen(navController: NavController) {
                     color = CustomColor.black,
                 )
             }
-            
+
         }
     }
 
