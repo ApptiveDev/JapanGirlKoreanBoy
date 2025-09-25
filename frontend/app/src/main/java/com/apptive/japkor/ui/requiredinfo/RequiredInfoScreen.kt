@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -26,12 +25,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.apptive.japkor.R
 import com.apptive.japkor.ui.components.CustomText
 import com.apptive.japkor.ui.components.CustomTextType
 import com.apptive.japkor.ui.components.StepIndicator
+import com.apptive.japkor.ui.components.requiredinfo.Step1Content
+import com.apptive.japkor.ui.components.requiredinfo.Step2Content
+import com.apptive.japkor.ui.components.requiredinfo.Step3Content
+import com.apptive.japkor.ui.components.requiredinfo.Step4Content
 import com.apptive.japkor.ui.theme.CustomColor
 
 @Composable
@@ -157,170 +159,5 @@ fun RequiredInfoScreen(
             }
         }
 
-    }
-}
-
-@Composable
-fun Step1Content(selectedOption: androidx.compose.runtime.MutableState<String>) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 50.dp),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        CustomText(
-            text = "성별을 설정해주세요",
-            type = CustomTextType.mainRegularLarge,
-            size = 32.sp
-        )
-        CustomText(
-            text = "한국인 남성, 일본인 여성 중 선택가능합니다.",
-            color = CustomColor.gray400,
-            type = CustomTextType.mainRegularSmall,
-        )
-        Spacer(modifier = Modifier.height(50.dp))
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            CustomText(
-                text = "저는",
-                color = CustomColor.gray400,
-                type = CustomTextType.mainRegularSmall,
-            )
-            Spacer(modifier = Modifier.width(10.dp))
-            Column {
-                listOf("한국 남성", "일본 여성").forEach { option ->
-                    val isSelected = selectedOption.value == option
-                    Button(
-                        onClick = { selectedOption.value = option },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = if (isSelected) CustomColor.gray300 else CustomColor.gray100
-                        ),
-                        modifier = Modifier.padding(end = 8.dp)
-                    ) {
-                        CustomText(
-                            text = option,
-                            color = if (isSelected) Color.White else CustomColor.black,
-                            type = CustomTextType.mainRegularSmall,
-                        )
-                    }
-                }
-            }
-            Spacer(modifier = Modifier.width(10.dp))
-            CustomText(
-                text = "입니다.",
-                color = CustomColor.gray400,
-                type = CustomTextType.mainRegularSmall,
-            )
-        }
-        Spacer(modifier = Modifier.height(80.dp))
-        val selectedText = if (selectedOption.value == "한국 남성") {
-            "'한국 남성'를 선택하셨습니다.\n\n'한국 남성'를 선택하는 경우,\n'일본 여성'에게 프로필이 먼저 전달됩니다."
-        } else {
-            "'일본 여성'를 선택하셨습니다.\n\n'일본 여성'를 선택하는 경우,\n'한국 남성'에게 프로필이 먼저 전달됩니다."
-        }
-        CustomText(
-            text = selectedText,
-            color = CustomColor.gray300,
-            type = CustomTextType.bodyLarge,
-        )
-        Spacer(modifier = Modifier.height(30.dp))
-    }
-}
-
-@Composable
-fun Step2Content() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 50.dp),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        CustomText(
-            text = "필수정보입력",
-            type = CustomTextType.mainRegularLarge,
-            size = 32.sp
-        )
-        CustomText(
-            text = "클릭하여 각 항목에 정보를 입력해주세요.",
-            color = CustomColor.gray400,
-            type = CustomTextType.mainRegularSmall,
-        )
-        Spacer(modifier = Modifier.height(50.dp))
-
-        // 나이 입력 UI 구현 (예시)
-        CustomText(
-            text = "Step 2: 화면",
-            color = CustomColor.gray300,
-            type = CustomTextType.bodyLarge,
-        )
-        Spacer(modifier = Modifier.height(200.dp))
-    }
-}
-
-@Composable
-fun Step3Content() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 50.dp),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        CustomText(
-            text = "선택사항",
-            type = CustomTextType.mainRegularLarge,
-            size = 32.sp
-        )
-        CustomText(
-            text = "클릭하여 각 항목에 정보를 입력해주세요.",
-            color = CustomColor.gray400,
-            type = CustomTextType.mainRegularSmall,
-        )
-        Spacer(modifier = Modifier.height(50.dp))
-
-        // 프로필 사진 등록 UI 구현 (예시)
-        CustomText(
-            text = "Step 3: 화면",
-            color = CustomColor.gray300,
-            type = CustomTextType.bodyLarge,
-        )
-        Spacer(modifier = Modifier.height(200.dp))
-    }
-}
-
-@Composable
-fun Step4Content() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 50.dp),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        CustomText(
-            text = "프로필사진",
-            type = CustomTextType.mainRegularLarge,
-            size = 32.sp
-        )
-        CustomText(
-            text = "클릭하여 얼굴이 보이는 사진을 첨부해주세요.",
-            color = CustomColor.gray400,
-            type = CustomTextType.mainRegularSmall,
-        )
-        Spacer(modifier = Modifier.height(50.dp))
-
-        // 자기소개 작성 UI 구현 (예시)
-        CustomText(
-            text = "Step 4: 화면",
-            color = CustomColor.gray300,
-            type = CustomTextType.bodyLarge,
-        )
-        Spacer(modifier = Modifier.height(200.dp))
     }
 }
