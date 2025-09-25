@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -103,9 +106,9 @@ fun RequiredInfoScreen(
                 Column {
                     listOf("한국 남성", "일본 여성").forEach { option ->
                         val isSelected = selectedOption.value == option
-                        androidx.compose.material3.Button(
+                        Button(
                             onClick = { selectedOption.value = option },
-                            colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                            colors = ButtonDefaults.buttonColors(
                                 containerColor = if (isSelected) CustomColor.gray300 else CustomColor.gray100
                             ),
                             modifier = Modifier.padding(end = 8.dp)
@@ -125,6 +128,33 @@ fun RequiredInfoScreen(
                     type = CustomTextType.mainRegularSmall,
                 )
             }
+            Spacer(modifier = Modifier.height(80.dp))
+            CustomText(
+                text = "‘한국 남성'를 선택하셨습니다.\n" +
+                        "\n" +
+                        "‘한국 남성'를 선택하는 경우,\n" +
+                        "‘일본 여성'에게 프로필이 먼저 전달됩니다.",
+                color = CustomColor.gray300,
+                type = CustomTextType.bodyLarge,
+            )
+            Spacer(modifier = Modifier.height(30.dp))
+        }
+        Button(
+            onClick = { navController.navigate("") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .padding(horizontal = 30.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = CustomColor.gray300
+            ),
+            shape = RoundedCornerShape(10.dp)
+        ) {
+            CustomText(
+                text = "다음",
+                type = CustomTextType.bodyLarge,
+                color = Color.Black
+            )
         }
 
 
