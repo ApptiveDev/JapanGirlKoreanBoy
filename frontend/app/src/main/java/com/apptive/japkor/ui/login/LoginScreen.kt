@@ -50,6 +50,7 @@ fun LoginScreen(navController: NavController) {
         horizontalAlignment = Alignment.Start
     ) {
         // 헤더: 좌측 상단 뒤로가기 아이콘 + 구분선 + 언어 선택
+        Spacer(modifier = Modifier.height(30.dp))
         Column(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -98,7 +99,7 @@ fun LoginScreen(navController: NavController) {
         ) {
             CustomText(
                 text = "어서오세요\nen 입니다",
-                type = CustomTextType.mainRegularSmall,
+                type = CustomTextType.mainRegularLarge,
                 size = 32.sp
             )
             CustomText(
@@ -225,11 +226,33 @@ fun LoginScreen(navController: NavController) {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-            CustomText(
-                text = "────────     SNS 계정으로 로그인     ────────",
-                type = CustomTextType.bodyMedium,
-                color = CustomColor.gray300
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                HorizontalDivider(
+                    modifier = Modifier
+                        .weight(1f)
+                        .align(Alignment.CenterVertically),
+                    color = CustomColor.gray300,
+                    thickness = 1.dp
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                CustomText(
+                    text = "SNS 계정으로 로그인",
+                    type = CustomTextType.bodyMedium,
+                    color = CustomColor.gray300,
+                    modifier = Modifier.align(Alignment.CenterVertically)
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                HorizontalDivider(
+                    modifier = Modifier
+                        .weight(1f)
+                        .align(Alignment.CenterVertically),
+                    color = CustomColor.gray300,
+                    thickness = 1.dp
+                )
+            }
             Spacer(modifier = Modifier.height(1.dp))
             Row {
                 GoogleSignUpButton(
@@ -305,7 +328,7 @@ fun LoginScreen(navController: NavController) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(10.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -331,6 +354,7 @@ fun LoginScreen(navController: NavController) {
                     color = CustomColor.black,
                 )
             }
+
         }
     }
 

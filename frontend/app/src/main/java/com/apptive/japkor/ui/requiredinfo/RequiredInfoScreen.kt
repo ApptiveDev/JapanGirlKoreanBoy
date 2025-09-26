@@ -1,94 +1,163 @@
 package com.apptive.japkor.ui.requiredinfo
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.apptive.japkor.R
+import com.apptive.japkor.ui.components.CustomText
+import com.apptive.japkor.ui.components.CustomTextType
+import com.apptive.japkor.ui.components.StepIndicator
+import com.apptive.japkor.ui.components.requiredinfo.Step1Content
+import com.apptive.japkor.ui.components.requiredinfo.Step2Content
+import com.apptive.japkor.ui.components.requiredinfo.Step3Content
+import com.apptive.japkor.ui.components.requiredinfo.Step4Content
+import com.apptive.japkor.ui.theme.CustomColor
 
 @Composable
 fun RequiredInfoScreen(
     navController: NavController,
-    onSubmit: (name: String, email: String) -> Unit = { _, _ -> }
+    onSubmit: (name: String, email: String) -> Unit = { _, _ -> },
+    initialStep: Int = 1
 ) {
-    var name by remember { mutableStateOf("") }
-    var email by remember { mutableStateOf("") }
-    var error by remember { mutableStateOf("") }
+    val selectedOption = remember { mutableStateOf("한국 남성") }
+    val currentStep = remember { mutableStateOf(initialStep) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(Color.White)
+            .padding(WindowInsets.safeDrawing.asPaddingValues()),
+        horizontalAlignment = Alignment.Start
     ) {
-        IconButton(
-            onClick = { navController.popBackStack() },
+        // 상단 뒤로가기
+        Spacer(modifier = Modifier.height(30.dp))
+        Column(
             modifier = Modifier
-                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.Start
         ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "뒤로가기",
-                tint = Color.Black
-            )
+            IconButton(
+                onClick = { navController.popBackStack() },
+                modifier = Modifier.padding(horizontal = 20.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_back),
+                    contentDescription = "뒤로가기",
+                )
+            }
         }
 
-        Text(text = "정보 입력", style = MaterialTheme.typography.headlineMedium)
-        Spacer(modifier = Modifier.height(32.dp))
-        OutlinedTextField(
-            value = name,
-            onValueChange = { name = it },
-            label = { Text("이름") },
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("이메일") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-            modifier = Modifier.fillMaxWidth()
-        )
+        // 스텝 인디케이터 (4단계, 높이 3dp)
+        StepIndicator(currentStep = currentStep.value)
         Spacer(modifier = Modifier.height(24.dp))
-        if (error.isNotEmpty()) {
-            Text(text = error, color = MaterialTheme.colorScheme.error)
-            Spacer(modifier = Modifier.height(8.dp))
+
+        // Step에 따른 Body UI
+        when (currentStep.value) {
+            1 -> Step1Content(selectedOption = selectedOption)
+            2 -> Step2Content()
+            3 -> Step3Content()
+            4 -> Step4Content()
         }
-        Button(
-            onClick = {
-                if (name.isBlank() || email.isBlank()) {
-                    error = "모든 정보를 입력해주세요."
-                } else {
-                    error = ""
-                    onSubmit(name, email)
+
+        // 하단 버튼
+        if (currentStep.value == 1) {
+            // Step 1: 다음 버튼만
+            Button(
+                onClick = {
+                    currentStep.value += 1
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(horizontal = 30.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = CustomColor.gray300
+                ),
+                shape = RoundedCornerShape(10.dp)
+            ) {
+                CustomText(
+                    text = "다음",
+                    type = CustomTextType.bodyLarge,
+                    color = Color.Black
+                )
+            }
+        } else {
+            // Step 2, 3, 4: 이전, 다음/완료 버튼
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 30.dp),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                // 이전 버튼
+                Button(
+                    onClick = {
+                        currentStep.value -= 1
+                    },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = CustomColor.gray100
+                    ),
+                    shape = RoundedCornerShape(10.dp)
+                ) {
+                    CustomText(
+                        text = "이전",
+                        type = CustomTextType.bodyLarge,
+                        color = CustomColor.black
+                    )
                 }
-            },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("제출")
+
+                // 다음/완료 버튼
+                Button(
+                    onClick = {
+                        if (currentStep.value < 4) {
+                            currentStep.value += 1
+                        } else {
+                            // 마지막 단계에서 완료 처리
+                            navController.navigate("language") // 다음 화면으로 이동
+                        }
+                    },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = CustomColor.gray300
+                    ),
+                    shape = RoundedCornerShape(10.dp)
+                ) {
+                    CustomText(
+                        text = if (currentStep.value < 4) "다음" else "완료",
+                        type = CustomTextType.bodyLarge,
+                        color = Color.Black
+                    )
+                }
+            }
         }
+
     }
 }
