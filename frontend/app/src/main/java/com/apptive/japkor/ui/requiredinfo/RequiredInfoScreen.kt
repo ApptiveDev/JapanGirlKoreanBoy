@@ -31,6 +31,11 @@ import com.apptive.japkor.R
 import com.apptive.japkor.ui.components.CustomText
 import com.apptive.japkor.ui.components.CustomTextType
 import com.apptive.japkor.ui.components.StepIndicator
+import com.apptive.japkor.ui.requiredinfo.steps.Step1Content
+import com.apptive.japkor.ui.requiredinfo.steps.Step2Content
+import com.apptive.japkor.ui.requiredinfo.steps.Step3Content
+import com.apptive.japkor.ui.requiredinfo.steps.Step4Content
+import com.apptive.japkor.ui.requiredinfo.steps.Step5Content
 import com.apptive.japkor.ui.theme.CustomColor
 
 @Composable

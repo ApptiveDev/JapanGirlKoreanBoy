@@ -1,4 +1,4 @@
-package com.apptive.japkor.ui.requiredinfo
+package com.apptive.japkor.ui.requiredinfo.steps
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
