@@ -97,7 +97,7 @@ fun Step2Content() {
                     onValueChange = {},
                     placeholder = placeholder
                 )
-            }
+            }//
 
         }
 
