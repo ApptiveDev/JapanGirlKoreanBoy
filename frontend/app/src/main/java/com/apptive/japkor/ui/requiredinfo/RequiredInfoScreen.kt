@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -79,6 +80,7 @@ fun RequiredInfoScreen(
         }
 
         // 하단 버튼
+        Spacer(modifier = Modifier.weight(1f)) // Pushes the buttons to the bottom
         if (currentStep.value == 1) {
             // Step 1: 다음 버튼만
             Button(
@@ -92,7 +94,7 @@ fun RequiredInfoScreen(
                 colors = ButtonDefaults.buttonColors(
                     containerColor = CustomColor.gray300
                 ),
-                shape = RoundedCornerShape(10.dp)
+                shape = RoundedCornerShape(16.dp)
             ) {
                 CustomText(
                     text = "다음",
@@ -119,7 +121,7 @@ fun RequiredInfoScreen(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = CustomColor.gray100
                     ),
-                    shape = RoundedCornerShape(10.dp)
+                    shape = RoundedCornerShape(16.dp)
                 ) {
                     CustomText(
                         text = "이전",
@@ -144,7 +146,7 @@ fun RequiredInfoScreen(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = CustomColor.gray300
                     ),
-                    shape = RoundedCornerShape(10.dp)
+                    shape = RoundedCornerShape(16.dp)
                 ) {
                     CustomText(
                         text = if (currentStep.value < 4) "다음" else "완료",
@@ -154,6 +156,8 @@ fun RequiredInfoScreen(
                 }
             }
         }
+
+        Spacer(modifier = Modifier.navigationBarsPadding())
 
     }
 }

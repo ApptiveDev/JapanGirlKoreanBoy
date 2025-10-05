@@ -78,6 +78,5 @@ fun Step2Content() {
             type = CustomTextType.bodyLarge,
         )
 
-        Spacer(modifier = Modifier.height(50.dp))
     }
 }
