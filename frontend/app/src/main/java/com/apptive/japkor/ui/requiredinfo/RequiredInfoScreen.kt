@@ -68,7 +68,7 @@ fun RequiredInfoScreen(
         }
 
         // 스텝 인디케이터 (4단계, 높이 3dp)
-        StepIndicator(currentStep = currentStep.value)
+        StepIndicator(currentStep = currentStep.value, totalSteps = 5)
         Spacer(modifier = Modifier.height(24.dp))
 
         // Step에 따른 Body UI
@@ -77,6 +77,7 @@ fun RequiredInfoScreen(
             2 -> Step2Content()
             3 -> Step3Content()
             4 -> Step4Content()
+            5 -> Step5Content()
         }
 
         // 하단 버튼
@@ -133,7 +134,7 @@ fun RequiredInfoScreen(
                 // 다음/완료 버튼
                 Button(
                     onClick = {
-                        if (currentStep.value < 4) {
+                        if (currentStep.value < 5) {
                             currentStep.value += 1
                         } else {
                             // 마지막 단계에서 완료 처리
