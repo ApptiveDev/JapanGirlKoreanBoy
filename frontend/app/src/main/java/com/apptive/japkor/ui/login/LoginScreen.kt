@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.apptive.japkor.R
+import com.apptive.japkor.ui.components.CustomOutlinedTextField
 import com.apptive.japkor.ui.components.CustomText
 import com.apptive.japkor.ui.components.CustomTextType
 import com.apptive.japkor.ui.components.auth.GoogleSignUpButton
@@ -116,50 +117,16 @@ fun LoginScreen(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
 
-                androidx.compose.material3.OutlinedTextField(
+                CustomOutlinedTextField(
                     value = "",
                     onValueChange = {},
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
-                        .border(
-                            width = 1.dp,
-                            color = CustomColor.gray100,
-                            shape = RoundedCornerShape(10.dp)
-                        ),
-                    shape = RoundedCornerShape(10.dp),
-
-                    placeholder = {
-                        CustomText(
-                            text = "아이디를 입력하세요",
-                            type = CustomTextType.bodyMedium,
-                            color = CustomColor.gray300
-                        )
-
-                    }
+                    placeholder = "아이디를 입력하세요"
                 )
 
-                androidx.compose.material3.OutlinedTextField(
+                CustomOutlinedTextField(
                     value = "",
                     onValueChange = {},
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
-                        .border(
-                            width = 1.dp,
-                            color = CustomColor.gray100,
-                            shape = RoundedCornerShape(10.dp)
-                        ),
-                    shape = RoundedCornerShape(10.dp),
-                    placeholder = {
-                        CustomText(
-                            text = "비밀번호를 입력하세요",
-                            type = CustomTextType.bodyMedium,
-                            color = CustomColor.gray300
-                        )
-
-                    },
-                    visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation()
+                    placeholder = "비밀번호를 입력하세요"
                 )
                 Button(
                     onClick = { /* TODO: 로그인 처리 */ },

@@ -1,10 +1,10 @@
 package com.apptive.japkor.ui.components
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -21,13 +21,12 @@ fun CustomOutlinedTextField(
         onValueChange = onValueChange,
         modifier = Modifier
             .fillMaxWidth()
-            .height(50.dp)
-            .border(
-                width = 1.dp,
-                color = CustomColor.gray100,
-                shape = RoundedCornerShape(10.dp)
-            ),
-        shape = RoundedCornerShape(10.dp),
+            .height(50.dp),
+        shape = RoundedCornerShape(16.dp),
+        colors = OutlinedTextFieldDefaults.colors(
+            unfocusedBorderColor = CustomColor.gray200,
+            focusedBorderColor = CustomColor.gray300
+        ),
         placeholder = {
             CustomText(
                 text = placeholder,
