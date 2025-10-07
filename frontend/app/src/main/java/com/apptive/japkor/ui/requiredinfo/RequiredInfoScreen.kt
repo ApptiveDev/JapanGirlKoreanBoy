@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,10 +31,11 @@ import com.apptive.japkor.R
 import com.apptive.japkor.ui.components.CustomText
 import com.apptive.japkor.ui.components.CustomTextType
 import com.apptive.japkor.ui.components.StepIndicator
-import com.apptive.japkor.ui.components.requiredinfo.Step1Content
-import com.apptive.japkor.ui.components.requiredinfo.Step2Content
-import com.apptive.japkor.ui.components.requiredinfo.Step3Content
-import com.apptive.japkor.ui.components.requiredinfo.Step4Content
+import com.apptive.japkor.ui.requiredinfo.steps.Step1Content
+import com.apptive.japkor.ui.requiredinfo.steps.Step2Content
+import com.apptive.japkor.ui.requiredinfo.steps.Step3Content
+import com.apptive.japkor.ui.requiredinfo.steps.Step4Content
+import com.apptive.japkor.ui.requiredinfo.steps.Step5Content
 import com.apptive.japkor.ui.theme.CustomColor
 
 @Composable
@@ -71,7 +73,7 @@ fun RequiredInfoScreen(
         }
 
         // 스텝 인디케이터 (4단계, 높이 3dp)
-        StepIndicator(currentStep = currentStep.value)
+        StepIndicator(currentStep = currentStep.value, totalSteps = 5)
         Spacer(modifier = Modifier.height(24.dp))
 
         // Step에 따른 Body UI
@@ -80,9 +82,11 @@ fun RequiredInfoScreen(
             2 -> Step2Content()
             3 -> Step3Content()
             4 -> Step4Content()
+            5 -> Step5Content()
         }
 
         // 하단 버튼
+        Spacer(modifier = Modifier.weight(1f)) // Pushes the buttons to the bottom
         if (currentStep.value == 1) {
             // Step 1: 다음 버튼만
             Button(
@@ -96,7 +100,7 @@ fun RequiredInfoScreen(
                 colors = ButtonDefaults.buttonColors(
                     containerColor = CustomColor.gray300
                 ),
-                shape = RoundedCornerShape(10.dp)
+                shape = RoundedCornerShape(16.dp)
             ) {
                 CustomText(
                     text = "다음",
@@ -123,7 +127,7 @@ fun RequiredInfoScreen(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = CustomColor.gray100
                     ),
-                    shape = RoundedCornerShape(10.dp)
+                    shape = RoundedCornerShape(16.dp)
                 ) {
                     CustomText(
                         text = "이전",
@@ -135,7 +139,7 @@ fun RequiredInfoScreen(
                 // 다음/완료 버튼
                 Button(
                     onClick = {
-                        if (currentStep.value < 4) {
+                        if (currentStep.value < 5) {
                             currentStep.value += 1
                         } else {
                             // 마지막 단계에서 완료 처리
@@ -148,7 +152,7 @@ fun RequiredInfoScreen(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = CustomColor.gray300
                     ),
-                    shape = RoundedCornerShape(10.dp)
+                    shape = RoundedCornerShape(16.dp)
                 ) {
                     CustomText(
                         text = if (currentStep.value < 4) "다음" else "완료",
@@ -158,6 +162,8 @@ fun RequiredInfoScreen(
                 }
             }
         }
+
+        Spacer(modifier = Modifier.navigationBarsPadding())
 
     }
 }

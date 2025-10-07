@@ -1,4 +1,4 @@
-package com.apptive.japkor.ui.components.requiredinfo
+package com.apptive.japkor.ui.requiredinfo.steps
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
