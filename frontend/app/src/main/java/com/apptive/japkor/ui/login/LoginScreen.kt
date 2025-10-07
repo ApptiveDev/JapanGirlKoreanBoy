@@ -149,7 +149,8 @@ fun LoginScreen(navController: NavController) {
                     CustomOutlinedTextField(
                         value = password,
                         onValueChange = { password = it },
-                        placeholder = "비밀번호를 입력하세요"
+                        placeholder = "비밀번호를 입력하세요",
+                        isPassword = true
                     )
 
                     Button(

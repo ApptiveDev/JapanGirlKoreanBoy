@@ -3,10 +3,14 @@ package com.apptive.japkor.ui.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.apptive.japkor.ui.theme.CustomColor
 
@@ -14,7 +18,8 @@ import com.apptive.japkor.ui.theme.CustomColor
 fun CustomOutlinedTextField(
     value: String,
     onValueChange: (String) -> Unit,
-    placeholder: String
+    placeholder: String,
+    isPassword: Boolean = false
 ) {
     OutlinedTextField(
         value = value,
@@ -33,6 +38,8 @@ fun CustomOutlinedTextField(
                 type = CustomTextType.bodyMedium,
                 color = CustomColor.gray300
             )
-        }
+        },
+        visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
+        keyboardOptions = if (isPassword) KeyboardOptions(keyboardType = KeyboardType.Password) else KeyboardOptions.Default
     )
 }
