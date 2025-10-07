@@ -44,6 +44,7 @@ import com.apptive.japkor.R
 import com.apptive.japkor.data.api.apiService
 import com.apptive.japkor.data.model.SignInRequest
 import com.apptive.japkor.data.model.SignInResponse
+import com.apptive.japkor.navigation.Screen
 import com.apptive.japkor.ui.components.CustomOutlinedTextField
 import com.apptive.japkor.ui.components.CustomText
 import com.apptive.japkor.ui.components.CustomTextType
@@ -267,7 +268,7 @@ fun LoginScreen(navController: NavController) {
                             type = CustomTextType.bodyMedium,
                             color = CustomColor.black,
                             modifier = Modifier.clickable {
-                                navController.navigate("signup")
+                                navController.navigate(Screen.SignUp.route)
                             }
                         )
                     }

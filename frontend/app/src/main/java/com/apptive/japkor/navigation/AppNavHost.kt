@@ -34,8 +34,11 @@ fun AppNavHost(navController: NavHostController, isSignedIn: Boolean) {
         composable(Screen.RequiredInfo.route) {
             RequiredInfoScreen(navController)
         }
-        composable(Screen.SignUp.route) {
-            SignUpScreen(navController)
-        }
+        composable(
+            route = Screen.SignUp.route,
+            content = {
+                SignUpScreen(navController)
+            }
+        )
     }
 }
