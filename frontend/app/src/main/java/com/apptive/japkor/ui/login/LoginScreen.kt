@@ -186,7 +186,7 @@ fun LoginScreen(navController: NavController) {
                                             )
 
                                             // TODO: 토큰 저장 및 메인 화면으로 이동
-                                            navController.navigate("main")
+                                            navController.navigate("requiredinfo")
                                         } else {
                                             val errorMsg = when (statusCode) {
                                                 400 -> "잘못된 요청입니다. (400)"
