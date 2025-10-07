@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.apptive.japkor.ui.theme.CustomColor
 
@@ -39,6 +40,9 @@ fun CustomOutlinedTextField(
                 color = CustomColor.gray300
             )
         },
+        textStyle = androidx.compose.ui.text.TextStyle(
+            textAlign = TextAlign.Start
+        ),
         visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
         keyboardOptions = if (isPassword) KeyboardOptions(keyboardType = KeyboardType.Password) else KeyboardOptions.Default
     )
