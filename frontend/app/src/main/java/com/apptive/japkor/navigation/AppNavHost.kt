@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.apptive.japkor.ui.language.LanguageScreen
 import com.apptive.japkor.ui.login.LoginScreen
 import com.apptive.japkor.ui.requiredinfo.RequiredInfoScreen
+import com.apptive.japkor.ui.signup.SignUpScreen
 
 sealed class Screen(val route: String) {
     object Login : Screen("login")
@@ -15,6 +16,7 @@ sealed class Screen(val route: String) {
 
     object RequiredInfo : Screen("requiredinfo")
 
+    object SignUp : Screen("signup")
 }
 
 @Composable
@@ -31,6 +33,9 @@ fun AppNavHost(navController: NavHostController, isSignedIn: Boolean) {
         }
         composable(Screen.RequiredInfo.route) {
             RequiredInfoScreen(navController)
+        }
+        composable(Screen.SignUp.route) {
+            SignUpScreen(navController)
         }
     }
 }

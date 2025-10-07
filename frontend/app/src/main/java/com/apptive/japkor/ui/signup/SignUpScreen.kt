@@ -1,9 +1,8 @@
-package com.apptive.japkor.ui.login
+package com.apptive.japkor.ui.signup
 
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,8 +13,6 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.ime
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.width
@@ -35,36 +32,29 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.apptive.japkor.R
 import com.apptive.japkor.data.api.apiService
-import com.apptive.japkor.data.model.SignInRequest
-import com.apptive.japkor.data.model.SignInResponse
+import com.apptive.japkor.data.model.SignUpRequest
 import com.apptive.japkor.ui.components.CustomOutlinedTextField
 import com.apptive.japkor.ui.components.CustomText
 import com.apptive.japkor.ui.components.CustomTextType
 import com.apptive.japkor.ui.components.CustomToast
-import com.apptive.japkor.ui.components.auth.GoogleSignUpButton
 import com.apptive.japkor.ui.theme.CustomColor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun SignUpScreen(navController: NavController) {
+    var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     val context = LocalContext.current
-
-    // 키보드 높이 감지
-    LocalDensity.current
-    WindowInsets.ime
-    WindowInsets.navigationBars
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -124,12 +114,12 @@ fun LoginScreen(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 CustomText(
-                    text = "어서오세요\nen 입니다",
+                    text = "회원가입\nen 입니다",
                     type = CustomTextType.mainRegularLarge,
                     size = 32.sp
                 )
                 CustomText(
-                    text = "당신의 인연을 잇는 소개팅 어플 '앤' 입니다\n",
+                    text = "당신의 인연을 잇는 소개팅 어플 '앤'에 가입하세요\n",
                     color = CustomColor.gray400,
                     type = CustomTextType.mainRegularSmall,
                 )
@@ -142,9 +132,15 @@ fun LoginScreen(navController: NavController) {
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     CustomOutlinedTextField(
+                        value = name,
+                        onValueChange = { name = it },
+                        placeholder = "이름을 입력하세요"
+                    )
+
+                    CustomOutlinedTextField(
                         value = email,
                         onValueChange = { email = it },
-                        placeholder = "아이디를 입력하세요"
+                        placeholder = "이메일을 입력하세요"
                     )
 
                     CustomOutlinedTextField(
@@ -157,61 +153,59 @@ fun LoginScreen(navController: NavController) {
                     Button(
                         onClick = {
                             // 입력값 검증
-                            if (email.isBlank() || password.isBlank()) {
-                                CustomToast.show(context, "아이디와 비밀번호를 모두 입력해주세요.")
+                            if (name.isBlank() || email.isBlank() || password.isBlank()) {
+                                CustomToast.show(context, "모든 필드를 입력해주세요.")
                                 return@Button
                             }
 
-                            // 로그인 API 호출
-                            val loginRequest = SignInRequest(email = email, password = password)
-                            Log.d("LoginScreen", "로그인 시도 - 이메일: $email")
+                            // 회원가입 API 호출
+                            val signUpRequest =
+                                SignUpRequest(name = name, email = email, password = password)
+                            Log.d("SignUpScreen", "회원가입 시도 - 이름: $name, 이메일: $email")
 
-                            apiService.signIn(loginRequest)
-                                .enqueue(object : Callback<SignInResponse> {
+                            apiService.signUp(signUpRequest)
+                                .enqueue(object : Callback<Void> {
                                     override fun onResponse(
-                                        call: Call<SignInResponse>,
-                                        response: Response<SignInResponse>
+                                        call: Call<Void>,
+                                        response: Response<Void>
                                     ) {
                                         val statusCode = response.code()
-                                        Log.d("LoginScreen", "로그인 응답 상태코드: $statusCode")
+                                        Log.d("SignUpScreen", "회원가입 응답 상태코드: $statusCode")
 
                                         if (response.isSuccessful) {
-                                            val loginResponse = response.body()
                                             Log.d(
-                                                "LoginScreen",
-                                                "로그인 성공 - 사용자: ${loginResponse?.name}, 토큰: ${loginResponse?.token}"
+                                                "SignUpScreen",
+                                                "회원가입 성공"
                                             )
 
                                             CustomToast.show(
                                                 context,
-                                                "로그인 성공! ${loginResponse?.name}님 환영합니다."
+                                                "회원가입 성공!"
                                             )
 
-                                            // TODO: 토큰 저장 및 메인 화면으로 이동
-                                            navController.navigate("requiredinfo")
+                                            // 로그인 화면으로 이동
+                                            navController.popBackStack()
                                         } else {
                                             val errorMsg = when (statusCode) {
                                                 400 -> "잘못된 요청입니다. (400)"
-                                                401 -> "아이디 또는 비밀번호가 잘못되었습니다. (401)"
-                                                403 -> "접근이 거부되었습니다. (403)"
-                                                404 -> "사용자를 찾을 수 없습니다. (404)"
+                                                409 -> "이미 존재하는 이메일입니다. (409)"
                                                 500 -> "서버 오류가 발생했습니다. (500)"
-                                                else -> "로그인에 실패했습니다. ($statusCode)"
+                                                else -> "회원가입에 실패했습니다. ($statusCode)"
                                             }
                                             Log.e(
-                                                "LoginScreen",
-                                                "로그인 실패 - 상태코드: $statusCode, 메시지: $errorMsg"
+                                                "SignUpScreen",
+                                                "회원가입 실패 - 상태코드: $statusCode, 메시지: $errorMsg"
                                             )
                                             CustomToast.showLong(context, errorMsg)
                                         }
                                     }
 
                                     override fun onFailure(
-                                        call: Call<SignInResponse>,
+                                        call: Call<Void>,
                                         t: Throwable
                                     ) {
                                         val errorMsg = "네트워크 오류: ${t.message}"
-                                        Log.e("LoginScreen", errorMsg, t)
+                                        Log.e("SignUpScreen", errorMsg, t)
                                         CustomToast.showLong(context, "네트워크 연결을 확인해주세요.")
                                     }
                                 })
@@ -225,50 +219,9 @@ fun LoginScreen(navController: NavController) {
                         shape = RoundedCornerShape(10.dp)
                     ) {
                         CustomText(
-                            text = "로그인",
+                            text = "회원가입",
                             type = CustomTextType.bodyLarge,
                             color = Color.Black
-                        )
-                    }
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 16.dp),
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        CustomText(
-                            text = "아이디 찾기",
-                            type = CustomTextType.bodyMedium,
-                            color = CustomColor.black,
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        CustomText(
-                            text = " | ",
-                            type = CustomTextType.bodyMedium,
-                            color = CustomColor.gray300,
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        CustomText(
-                            text = "비밀번호 찾기",
-                            type = CustomTextType.bodyMedium,
-                            color = CustomColor.black,
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        CustomText(
-                            text = " | ",
-                            type = CustomTextType.bodyMedium,
-                            color = CustomColor.gray300,
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        CustomText(
-                            text = "회원가입",
-                            type = CustomTextType.bodyMedium,
-                            color = CustomColor.black,
-                            modifier = Modifier.clickable {
-                                navController.navigate("signup")
-                            }
                         )
                     }
                 }
@@ -276,89 +229,6 @@ fun LoginScreen(navController: NavController) {
 
             // 키보드가 열릴 때 충분한 공간 확보
             Spacer(modifier = Modifier.height(200.dp))
-        }
-
-        // 하단 고정 버튼 영역
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .background(Color.White)
-                .padding(horizontal = 24.dp)
-                .padding(
-                    bottom = WindowInsets.navigationBars.asPaddingValues()
-                        .calculateBottomPadding() + 16.dp
-                ),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                HorizontalDivider(
-                    modifier = Modifier
-                        .weight(1f)
-                        .align(Alignment.CenterVertically),
-                    color = CustomColor.gray300,
-                    thickness = 1.dp
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-                CustomText(
-                    text = "SNS 계정으로 로그인",
-                    type = CustomTextType.bodyMedium,
-                    color = CustomColor.gray300,
-                    modifier = Modifier.align(Alignment.CenterVertically)
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-                HorizontalDivider(
-                    modifier = Modifier
-                        .weight(1f)
-                        .align(Alignment.CenterVertically),
-                    color = CustomColor.gray300,
-                    thickness = 1.dp
-                )
-            }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 16.dp),
-                horizontalArrangement = Arrangement.Center,
-
-                ) {
-                GoogleSignUpButton(
-                    onSignedIn = {
-                        Log.d("LoginScreen", "onSignedIn 콜백 호출됨")
-                        navController.navigate("requiredinfo")
-                    },
-                )
-
-            }
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                CustomText(
-                    text = "이용약관",
-                    type = CustomTextType.bodyMedium,
-                    color = CustomColor.black,
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                CustomText(
-                    text = " | ",
-                    type = CustomTextType.bodyMedium,
-                    color = CustomColor.gray300,
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                CustomText(
-                    text = "개인정보 보호정책",
-                    type = CustomTextType.bodyMedium,
-                    color = CustomColor.black,
-                )
-            }
         }
     }
 }
