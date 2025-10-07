@@ -4,9 +4,10 @@ import com.apptive.japkor.data.model.PostResponse
 import com.apptive.japkor.data.model.SignInRequest
 import com.apptive.japkor.data.model.SignInResponse
 import com.apptive.japkor.data.model.SignUpRequest
+
 import com.apptive.japkor.data.model.UserData
 import retrofit2.Call
-import retrofit2.Response
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
@@ -22,7 +23,7 @@ interface UserApiService {
     fun signIn(@Body body: SignInRequest): Call<SignInResponse>
 
     @POST("sign-up")
-    fun signUp(@Body body: SignUpRequest): Call<Response<Void>>
+    fun signUp(@Body body: SignUpRequest): Call<Void>
 }
 
 val retrofit = Retrofit.Builder()
