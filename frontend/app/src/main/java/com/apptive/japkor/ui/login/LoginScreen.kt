@@ -144,7 +144,7 @@ fun LoginScreen(navController: NavController) {
                     CustomOutlinedTextField(
                         value = email,
                         onValueChange = { email = it },
-                        placeholder = "아이디를 입력하세요"
+                        placeholder = "이메일을 입력하세요"
                     )
 
                     CustomOutlinedTextField(
@@ -222,7 +222,7 @@ fun LoginScreen(navController: NavController) {
                         colors = ButtonDefaults.buttonColors(
                             containerColor = CustomColor.gray300
                         ),
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(16.dp)
                     ) {
                         CustomText(
                             text = "로그인",

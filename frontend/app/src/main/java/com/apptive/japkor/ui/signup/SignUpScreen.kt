@@ -114,7 +114,7 @@ fun SignUpScreen(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 CustomText(
-                    text = "회원가입\nen 입니다",
+                    text = "회원가입",
                     type = CustomTextType.mainRegularLarge,
                     size = 32.sp
                 )
@@ -129,7 +129,7 @@ fun SignUpScreen(navController: NavController) {
                         .fillMaxWidth()
                         .background(Color.White, shape = RoundedCornerShape(16.dp)),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                    verticalArrangement = Arrangement.spacedBy(24.dp)
                 ) {
                     CustomOutlinedTextField(
                         value = name,
@@ -216,7 +216,7 @@ fun SignUpScreen(navController: NavController) {
                         colors = ButtonDefaults.buttonColors(
                             containerColor = CustomColor.gray300
                         ),
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(16.dp)
                     ) {
                         CustomText(
                             text = "회원가입",
