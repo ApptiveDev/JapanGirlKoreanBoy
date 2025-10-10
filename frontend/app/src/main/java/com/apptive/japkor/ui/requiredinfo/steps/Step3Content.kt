@@ -67,9 +67,10 @@ fun Step3Content() {
         }
 
         CustomText(
-            text = " '학력' 및 '재산' 정보는 선택 입력 사항입니다.\n 입력시, 더 빠르고 정확한 매칭에 도움을 줄 수 있습니다.",
+            text = "'학력' 및 '재산' 정보는 선택 입력 사항입니다.\n입력시, 더 빠르고 정확한 매칭에 도움을 줄 수 있습니다.",
             color = CustomColor.gray300,
             type = CustomTextType.bodyLarge,
+            modifier = Modifier.padding(horizontal = 7.dp)
         )
     }
 }

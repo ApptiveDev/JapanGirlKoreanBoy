@@ -78,9 +78,10 @@ fun Step2Content() {
         }
 
         CustomText(
-            text = " 거짓 정보 입력시, 큰일남!!",
+            text = "거짓 정보 입력시, 큰일남!!",
             color = CustomColor.gray300,
             type = CustomTextType.bodyLarge,
+            modifier = Modifier.padding(horizontal = 7.dp)
         )
 
     }
