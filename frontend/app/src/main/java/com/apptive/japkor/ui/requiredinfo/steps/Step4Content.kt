@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.apptive.japkor.ui.components.CustomText
@@ -71,6 +72,21 @@ fun Step4Content() {
             color = CustomColor.gray300,
             type = CustomTextType.bodyLarge,
             modifier = Modifier.padding(horizontal = 7.dp)
+        )
+
+        Spacer(modifier = Modifier.height(85.dp))
+        CustomText(
+            text = "프로필 사진 가이드 보기",
+            color = CustomColor.gray300,
+            type = CustomTextType.bodyLarge,
+            underline = true,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(vertical = 12.dp)
+                .clickable(
+                    role = Role.Button,
+                    onClick = { /* TODO: 사진 가이드 보기 */ }
+                )
         )
     }
 }
