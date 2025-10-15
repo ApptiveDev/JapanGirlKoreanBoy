@@ -78,10 +78,11 @@ fun Step2Content() {
         }
 
         CustomText(
-            text = "거짓 정보 입력시, 큰일남!!",
+            text = "거짓 정보 입력 시 서비스 이용이 제한될 수 있습니다.",
             color = CustomColor.gray300,
             type = CustomTextType.bodyLarge,
-            modifier = Modifier.padding(horizontal = 7.dp)
+            modifier = Modifier.padding(horizontal = 7.dp),
+            size = 14.sp
         )
 
     }

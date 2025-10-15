@@ -48,7 +48,7 @@ fun Step4Content() {
             color = CustomColor.gray300,
             type = CustomTextType.bodyLarge,
             modifier = Modifier.padding(horizontal = 7.dp),
-            size = 16.sp
+            size = 14.sp
         )
 
         CustomText(
@@ -56,13 +56,15 @@ fun Step4Content() {
             color = CustomColor.gray400,
             type = CustomTextType.bodyLarge,
             modifier = Modifier.padding(horizontal = 7.dp),
+            size = 14.sp
         )
 
         CustomText(
             text = "- 과도한 포토샵/스티커, 마스크로 가린 사진, 똑같은 사진 2장 등 가이드에 벗어나는 사진은 가입이 거절될 수 있습니다.",
             color = CustomColor.gray300,
             type = CustomTextType.bodyLarge,
-            modifier = Modifier.padding(horizontal = 7.dp)
+            modifier = Modifier.padding(horizontal = 7.dp),
+            size = 14.sp
         )
 
 
@@ -73,11 +75,12 @@ fun Step4Content() {
             underline = true,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(vertical = 12.dp)
+                .padding(vertical = 14.dp)
                 .clickable(
                     role = Role.Button,
                     onClick = { /* TODO: 사진 가이드 보기 */ }
-                )
+                ),
+            size = 14.sp
         )
     }
 }

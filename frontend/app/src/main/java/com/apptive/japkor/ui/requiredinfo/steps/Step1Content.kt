@@ -88,6 +88,7 @@ fun Step1Content(selectedOption: MutableState<String>) {
             text = selectedText,
             color = CustomColor.gray300,
             type = CustomTextType.bodyLarge,
+            size = 14.sp
         )
         Spacer(modifier = Modifier.height(30.dp))
     }
