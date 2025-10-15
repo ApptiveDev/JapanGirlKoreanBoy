@@ -154,7 +154,7 @@ fun SignUpScreen(navController: NavController) {
                         onClick = {
                             // 입력값 검증
                             if (name.isBlank() || email.isBlank() || password.isBlank()) {
-                                CustomToast.show(context, "모든 필드를 입력해주세요.")
+                                CustomToast.showError(context, "모든 필드를 입력해주세요.")
                                 return@Button
                             }
 
@@ -162,6 +162,7 @@ fun SignUpScreen(navController: NavController) {
                             val signUpRequest =
                                 SignUpRequest(name = name, email = email, password = password)
                             Log.d("SignUpScreen", "회원가입 시도 - 이름: $name, 이메일: $email")
+                            CustomToast.showDebug(context, "회원가입 시도 - $email")
 
                             apiService.signUp(signUpRequest)
                                 .enqueue(object : Callback<Void> {
@@ -171,6 +172,7 @@ fun SignUpScreen(navController: NavController) {
                                     ) {
                                         val statusCode = response.code()
                                         Log.d("SignUpScreen", "회원가입 응답 상태코드: $statusCode")
+                                        CustomToast.showDebug(context, "회원가입 응답 코드: $statusCode")
 
                                         if (response.isSuccessful) {
                                             Log.d(
@@ -178,10 +180,7 @@ fun SignUpScreen(navController: NavController) {
                                                 "회원가입 성공"
                                             )
 
-                                            CustomToast.show(
-                                                context,
-                                                "회원가입 성공!"
-                                            )
+                                            CustomToast.showSuccess(context, "회원가입 성공!")
 
                                             // 로그인 화면으로 이동
                                             navController.popBackStack()
@@ -196,7 +195,7 @@ fun SignUpScreen(navController: NavController) {
                                                 "SignUpScreen",
                                                 "회원가입 실패 - 상태코드: $statusCode, 메시지: $errorMsg"
                                             )
-                                            CustomToast.showLong(context, errorMsg)
+                                            CustomToast.showError(context, errorMsg, long = true)
                                         }
                                     }
 
@@ -206,7 +205,7 @@ fun SignUpScreen(navController: NavController) {
                                     ) {
                                         val errorMsg = "네트워크 오류: ${t.message}"
                                         Log.e("SignUpScreen", errorMsg, t)
-                                        CustomToast.showLong(context, "네트워크 연결을 확인해주세요.")
+                                        CustomToast.showError(context, "네트워크 연결을 확인해주세요.", long = true)
                                     }
                                 })
                         },
