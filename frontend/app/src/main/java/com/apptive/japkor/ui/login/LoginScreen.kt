@@ -159,13 +159,14 @@ fun LoginScreen(navController: NavController) {
                         onClick = {
                             // 입력값 검증
                             if (email.isBlank() || password.isBlank()) {
-                                CustomToast.show(context, "아이디와 비밀번호를 모두 입력해주세요.")
+                                CustomToast.showError(context, "아이디와 비밀번호를 모두 입력해주세요.")
                                 return@Button
                             }
 
                             // 로그인 API 호출
                             val loginRequest = SignInRequest(email = email, password = password)
                             Log.d("LoginScreen", "로그인 시도 - 이메일: $email")
+                            CustomToast.showDebug(context, "로그인 시도 - 이메일: $email")
 
                             apiService.signIn(loginRequest)
                                 .enqueue(object : Callback<SignInResponse> {
@@ -175,6 +176,7 @@ fun LoginScreen(navController: NavController) {
                                     ) {
                                         val statusCode = response.code()
                                         Log.d("LoginScreen", "로그인 응답 상태코드: $statusCode")
+                                        CustomToast.showDebug(context, "응답 코드: $statusCode")
 
                                         if (response.isSuccessful) {
                                             val loginResponse = response.body()
@@ -183,7 +185,7 @@ fun LoginScreen(navController: NavController) {
                                                 "로그인 성공 - 사용자: ${loginResponse?.name}, 토큰: ${loginResponse?.token}"
                                             )
 
-                                            CustomToast.show(
+                                            CustomToast.showSuccess(
                                                 context,
                                                 "로그인 성공! ${loginResponse?.name}님 환영합니다."
                                             )
@@ -203,7 +205,7 @@ fun LoginScreen(navController: NavController) {
                                                 "LoginScreen",
                                                 "로그인 실패 - 상태코드: $statusCode, 메시지: $errorMsg"
                                             )
-                                            CustomToast.showLong(context, errorMsg)
+                                            CustomToast.showError(context, errorMsg, long = true)
                                         }
                                     }
 
@@ -213,7 +215,7 @@ fun LoginScreen(navController: NavController) {
                                     ) {
                                         val errorMsg = "네트워크 오류: ${t.message}"
                                         Log.e("LoginScreen", errorMsg, t)
-                                        CustomToast.showLong(context, "네트워크 연결을 확인해주세요.")
+                                        CustomToast.showError(context, "네트워크 연결을 확인해주세요.", long = true)
                                     }
                                 })
                         },
@@ -331,6 +333,11 @@ fun LoginScreen(navController: NavController) {
                 GoogleSignUpButton(
                     onSignedIn = {
                         Log.d("LoginScreen", "onSignedIn 콜백 호출됨")
+                        CustomToast.showSuccess(
+                            context,
+                            "로그인 성공! 환영합니다."
+                        )
+
                         navController.navigate("requiredinfo")
                     },
                 )

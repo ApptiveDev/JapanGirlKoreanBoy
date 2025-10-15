@@ -3,7 +3,6 @@ package com.apptive.japkor.ui.components.auth
 import android.accounts.AccountManager
 import android.app.Activity
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -30,6 +29,7 @@ import com.apptive.japkor.R
 import com.apptive.japkor.data.model.UserData
 import com.apptive.japkor.data.repository.AuthRepository
 import com.apptive.japkor.data.repository.UserRepository
+import com.apptive.japkor.ui.components.CustomToast
 import com.apptive.japkor.ui.theme.CustomColor
 import com.apptive.japkor.utils.auth.GoogleCredentialHelper
 import kotlinx.coroutines.CancellationException
@@ -82,11 +82,10 @@ fun GoogleSignUpButton(onSignedIn: () -> Unit) {
                                     activity,
                                     { future ->
                                         activity.runOnUiThread {
-                                            Toast.makeText(
+                                            CustomToast.showSuccess(
                                                 activity,
-                                                "계정 추가 화면이 열렸습니다.",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
+                                                "계정 추가 화면이 열렸습니다."
+                                            )
                                         }
                                     },
                                     null
@@ -130,8 +129,10 @@ fun GoogleSignUpButton(onSignedIn: () -> Unit) {
                     } catch (e: CancellationException) {
                         // 취소 무시
                         Log.w("GoogleSignInButton", "작업 취소됨 ${e.message}")
+                        CustomToast.showDebug(activity, "Google 로그인 취소")
                     } catch (e: Exception) {
                         Log.e("GoogleSignInButton", "로그인 실패: ${e.message}")
+                        CustomToast.showError(activity, "Google 로그인에 실패했습니다.")
 
                     }
                 }
