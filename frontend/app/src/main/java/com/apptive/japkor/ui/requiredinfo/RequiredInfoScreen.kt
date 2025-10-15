@@ -155,7 +155,7 @@ fun RequiredInfoScreen(
                     shape = RoundedCornerShape(16.dp)
                 ) {
                     CustomText(
-                        text = if (currentStep.value < 4) "다음" else "완료",
+                        text = if (currentStep.value < 5) "다음" else "완료",
                         type = CustomTextType.bodyLarge,
                         color = Color.Black
                     )
