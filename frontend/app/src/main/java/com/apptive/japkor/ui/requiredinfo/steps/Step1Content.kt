@@ -32,13 +32,13 @@ fun Step1Content(selectedOption: MutableState<String>) {
     ) {
         CustomText(
             text = "성별을 설정해주세요",
-            type = CustomTextType.mainRegularLarge,
+            type = CustomTextType.mainRegular,
             size = 32.sp
         )
         CustomText(
             text = "한국인 남성, 일본인 여성 중 선택가능합니다.",
             color = CustomColor.gray400,
-            type = CustomTextType.mainRegularSmall,
+            type = CustomTextType.mainRegular,
         )
         Spacer(modifier = Modifier.height(50.dp))
 
@@ -50,7 +50,7 @@ fun Step1Content(selectedOption: MutableState<String>) {
             CustomText(
                 text = "저는",
                 color = CustomColor.gray400,
-                type = CustomTextType.mainRegularSmall,
+                type = CustomTextType.mainRegular,
             )
             Spacer(modifier = Modifier.width(10.dp))
             Column {
@@ -66,7 +66,7 @@ fun Step1Content(selectedOption: MutableState<String>) {
                         CustomText(
                             text = option,
                             color = if (isSelected) Color.White else CustomColor.black,
-                            type = CustomTextType.mainRegularSmall,
+                            type = CustomTextType.mainRegular,
                         )
                     }
                 }
@@ -75,7 +75,7 @@ fun Step1Content(selectedOption: MutableState<String>) {
             CustomText(
                 text = "입니다.",
                 color = CustomColor.gray400,
-                type = CustomTextType.mainRegularSmall,
+                type = CustomTextType.mainRegular,
             )
         }
         Spacer(modifier = Modifier.height(80.dp))
@@ -87,7 +87,7 @@ fun Step1Content(selectedOption: MutableState<String>) {
         CustomText(
             text = selectedText,
             color = CustomColor.gray300,
-            type = CustomTextType.bodyLarge,
+            type = CustomTextType.body,
             size = 14.sp
         )
         Spacer(modifier = Modifier.height(30.dp))

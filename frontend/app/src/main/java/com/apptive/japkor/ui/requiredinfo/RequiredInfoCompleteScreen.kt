@@ -69,19 +69,19 @@ fun RequiredInfoCompleteScreen(navController: NavController) {
                 }
                 CustomText(
                     text = "신청이 완료되었습니다",
-                    type = CustomTextType.titleLarge,
+                    type = CustomTextType.title,
                     size = 24.sp,
                     textAlign = TextAlign.Center
                 )
                 CustomText(
                     text = ". . .",
-                    type = CustomTextType.titleLarge,
+                    type = CustomTextType.title,
                     color = CustomColor.gray400,
                     textAlign = TextAlign.Center
                 )
                 CustomText(
                     text = "심사 중입니다",
-                    type = CustomTextType.bodyLarge,
+                    type = CustomTextType.body,
                     color = CustomColor.gray400,
                     textAlign = TextAlign.Center
                 )
@@ -102,7 +102,7 @@ fun RequiredInfoCompleteScreen(navController: NavController) {
                 ) {
                     CustomText(
                         text = "심사는 약 일주일 정도 걸립니다.\n심사가 완료되면 매칭이 시작됩니다!",
-                        type = CustomTextType.bodyMedium,
+                        type = CustomTextType.body,
                         color = CustomColor.gray400,
                         textAlign = TextAlign.Start
                     )
@@ -121,7 +121,7 @@ fun RequiredInfoCompleteScreen(navController: NavController) {
                 ) {
                     CustomText(
                         text = "확인했어요",
-                        type = CustomTextType.bodyMedium,
+                        type = CustomTextType.body,
                         color = Color.Black
                     )
                 }

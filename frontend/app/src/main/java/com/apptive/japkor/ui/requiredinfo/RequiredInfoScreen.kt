@@ -86,7 +86,7 @@ fun RequiredInfoScreen(
                         ) {
                             CustomText(
                                 text = "다음",
-                                type = CustomTextType.bodyLarge,
+                                type = CustomTextType.body,
                                 color = Color.Black
                             )
                         }
@@ -107,7 +107,7 @@ fun RequiredInfoScreen(
                             ) {
                                 CustomText(
                                     text = "이전",
-                                    type = CustomTextType.bodyLarge,
+                                    type = CustomTextType.body,
                                     color = CustomColor.black
                                 )
                             }
@@ -130,7 +130,7 @@ fun RequiredInfoScreen(
                             ) {
                                 CustomText(
                                     text = if (currentStep.value < 5) "다음" else "완료",
-                                    type = CustomTextType.bodyLarge,
+                                    type = CustomTextType.body,
                                     color = Color.Black
                                 )
                             }

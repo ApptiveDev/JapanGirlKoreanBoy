@@ -35,13 +35,13 @@ fun Step2Content() {
     ) {
         CustomText(
             text = "필수정보입력",
-            type = CustomTextType.mainRegularLarge,
+            type = CustomTextType.mainRegular,
             size = 32.sp
         )
         CustomText(
             text = "클릭하여 각 항목에 정보를 입력해주세요.",
             color = CustomColor.gray400,
-            type = CustomTextType.mainRegularSmall,
+            type = CustomTextType.mainRegular,
         )
         Spacer(modifier = Modifier.height(5.dp))
 
@@ -53,7 +53,7 @@ fun Step2Content() {
         ) {
             CustomText(
                 text = "*필수 항목",
-                type = CustomTextType.bodyLarge,
+                type = CustomTextType.body,
                 color = CustomColor.gray300
             )
         }
@@ -77,7 +77,7 @@ fun Step2Content() {
         CustomText(
             text = "거짓 정보 입력 시 서비스 이용이 제한될 수 있습니다.",
             color = CustomColor.gray300,
-            type = CustomTextType.bodyLarge,
+            type = CustomTextType.body,
             modifier = Modifier.padding(horizontal = 7.dp),
             size = 14.sp
         )

@@ -71,12 +71,12 @@ fun Step5Content() {
         ) {
             CustomText(
                 text = "나의 성격",
-                type = CustomTextType.mainBoldSmall,
+                type = CustomTextType.mainBold,
                 size = 16.sp
             )
             CustomText(
                 text = "(3개 이하)",
-                type = CustomTextType.mainBoldSmall,
+                type = CustomTextType.mainBold,
                 size = 14.sp,
                 color = CustomColor.gray300
             )
@@ -104,7 +104,7 @@ fun Step5Content() {
                 ) {
                     CustomText(
                         text = personality,
-                        type = CustomTextType.bodyLarge,
+                        type = CustomTextType.body,
                         size = 12.sp,
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp)
                     )
@@ -117,12 +117,12 @@ fun Step5Content() {
         ) {
             CustomText(
                 text = "이상형",
-                type = CustomTextType.mainBoldSmall,
+                type = CustomTextType.mainBold,
                 size = 16.sp
             )
             CustomText(
                 text = "(5개 이하)",
-                type = CustomTextType.mainBoldSmall,
+                type = CustomTextType.mainBold,
                 size = 14.sp,
                 color = CustomColor.gray300
             )
@@ -150,7 +150,7 @@ fun Step5Content() {
                 ) {
                     CustomText(
                         text = visual,
-                        type = CustomTextType.bodyLarge,
+                        type = CustomTextType.body,
                         size = 12.sp,
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp)
                     )
@@ -163,12 +163,12 @@ fun Step5Content() {
         ) {
             CustomText(
                 text = "데이트 스타일",
-                type = CustomTextType.mainBoldSmall,
+                type = CustomTextType.mainBold,
                 size = 16.sp
             )
             CustomText(
                 text = "(5개 이하)",
-                type = CustomTextType.mainBoldSmall,
+                type = CustomTextType.mainBold,
                 size = 14.sp,
                 color = CustomColor.gray300
             )
@@ -196,7 +196,7 @@ fun Step5Content() {
                 ) {
                     CustomText(
                         text = style,
-                        type = CustomTextType.bodyLarge,
+                        type = CustomTextType.body,
                         size = 12.sp,
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp)
                     )

@@ -30,13 +30,13 @@ fun Step3Content() {
     ) {
         CustomText(
             text = "선택사항",
-            type = CustomTextType.mainRegularLarge,
+            type = CustomTextType.mainRegular,
             size = 32.sp
         )
         CustomText(
             text = "클릭하여 각 항목에 정보를 입력해주세요.",
             color = CustomColor.gray400,
-            type = CustomTextType.mainRegularSmall,
+            type = CustomTextType.mainRegular,
         )
         Spacer(modifier = Modifier.height(50.dp))
 
@@ -69,7 +69,7 @@ fun Step3Content() {
         CustomText(
             text = "'학력' 및 '재산' 정보는 선택 입력 사항입니다.\n입력시, 더 빠르고 정확한 매칭에 도움을 줄 수 있습니다.",
             color = CustomColor.gray300,
-            type = CustomTextType.bodyLarge,
+            type = CustomTextType.body,
             modifier = Modifier.padding(horizontal = 7.dp),
             size = 14.sp
         )
