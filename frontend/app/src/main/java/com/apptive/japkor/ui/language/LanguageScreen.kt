@@ -66,7 +66,7 @@ fun LanguageScreen(navController: NavController) {
         Column(modifier = Modifier.padding(horizontal = 10.dp)) {
             CustomText(
                 text = "en",
-                type = CustomTextType.mainRegularLarge,
+                type = CustomTextType.mainRegular,
                 color = CustomColor.white,
                 size = 35.sp
             )
@@ -75,7 +75,7 @@ fun LanguageScreen(navController: NavController) {
             CustomText(
                 text = "당신의 인연을 잇는 소개팅 어플 ‘앤’ 입니다\n" +
                         "언어를 선택하여 시작해주세요",
-                type = CustomTextType.mainRegularSmall,
+                type = CustomTextType.mainRegular,
                 color = CustomColor.white,
                 size = 16.sp
             )
@@ -107,7 +107,7 @@ fun LanguageScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
             CustomText(
                 text = "인연",
-                type = CustomTextType.mainRegularLarge,
+                type = CustomTextType.mainRegular,
                 color = CustomColor.white,
                 modifier = Modifier
                     .fillMaxWidth()

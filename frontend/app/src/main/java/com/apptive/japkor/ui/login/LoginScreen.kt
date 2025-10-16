@@ -108,7 +108,7 @@ fun LoginScreen(navController: NavController) {
                 ) {
                     CustomText(
                         text = "한국어",
-                        type = CustomTextType.bodyLarge,
+                        type = CustomTextType.body,
                         color = CustomColor.gray300,
                         underline = true
                     )
@@ -126,13 +126,13 @@ fun LoginScreen(navController: NavController) {
             ) {
                 CustomText(
                     text = "어서오세요\nen 입니다",
-                    type = CustomTextType.mainRegularLarge,
+                    type = CustomTextType.mainRegular,
                     size = 32.sp
                 )
                 CustomText(
                     text = "당신의 인연을 잇는 소개팅 어플 '앤' 입니다\n",
                     color = CustomColor.gray400,
-                    type = CustomTextType.mainRegularSmall,
+                    type = CustomTextType.mainRegular,
                 )
 
                 Column(
@@ -229,7 +229,7 @@ fun LoginScreen(navController: NavController) {
                     ) {
                         CustomText(
                             text = "로그인",
-                            type = CustomTextType.bodyLarge,
+                            type = CustomTextType.body,
                             color = Color.Black
                         )
                     }
@@ -243,31 +243,31 @@ fun LoginScreen(navController: NavController) {
                     ) {
                         CustomText(
                             text = "아이디 찾기",
-                            type = CustomTextType.bodyMedium,
+                            type = CustomTextType.body,
                             color = CustomColor.black,
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         CustomText(
                             text = " | ",
-                            type = CustomTextType.bodyMedium,
+                            type = CustomTextType.body,
                             color = CustomColor.gray300,
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         CustomText(
                             text = "비밀번호 찾기",
-                            type = CustomTextType.bodyMedium,
+                            type = CustomTextType.body,
                             color = CustomColor.black,
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         CustomText(
                             text = " | ",
-                            type = CustomTextType.bodyMedium,
+                            type = CustomTextType.body,
                             color = CustomColor.gray300,
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         CustomText(
                             text = "회원가입",
-                            type = CustomTextType.bodyMedium,
+                            type = CustomTextType.body,
                             color = CustomColor.black,
                             modifier = Modifier.clickable {
                                 navController.navigate(Screen.SignUp.route)
@@ -309,7 +309,7 @@ fun LoginScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(10.dp))
                 CustomText(
                     text = "SNS 계정으로 로그인",
-                    type = CustomTextType.bodyMedium,
+                    type = CustomTextType.body,
                     color = CustomColor.gray300,
                     modifier = Modifier.align(Alignment.CenterVertically)
                 )
@@ -351,19 +351,19 @@ fun LoginScreen(navController: NavController) {
             ) {
                 CustomText(
                     text = "이용약관",
-                    type = CustomTextType.bodyMedium,
+                    type = CustomTextType.body,
                     color = CustomColor.black,
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 CustomText(
                     text = " | ",
-                    type = CustomTextType.bodyMedium,
+                    type = CustomTextType.body,
                     color = CustomColor.gray300,
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 CustomText(
                     text = "개인정보 보호정책",
-                    type = CustomTextType.bodyMedium,
+                    type = CustomTextType.body,
                     color = CustomColor.black,
                 )
             }

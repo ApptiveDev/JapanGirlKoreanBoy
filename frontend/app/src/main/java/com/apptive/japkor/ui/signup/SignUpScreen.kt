@@ -97,7 +97,7 @@ fun SignUpScreen(navController: NavController) {
                 ) {
                     CustomText(
                         text = "한국어",
-                        type = CustomTextType.bodyLarge,
+                        type = CustomTextType.body,
                         color = CustomColor.gray300,
                         underline = true
                     )
@@ -115,13 +115,13 @@ fun SignUpScreen(navController: NavController) {
             ) {
                 CustomText(
                     text = "회원가입",
-                    type = CustomTextType.mainRegularLarge,
+                    type = CustomTextType.mainRegular,
                     size = 32.sp
                 )
                 CustomText(
                     text = "당신의 인연을 잇는 소개팅 어플 '앤'에 가입하세요\n",
                     color = CustomColor.gray400,
-                    type = CustomTextType.mainRegularSmall,
+                    type = CustomTextType.mainRegular,
                 )
 
                 Column(
@@ -219,7 +219,7 @@ fun SignUpScreen(navController: NavController) {
                     ) {
                         CustomText(
                             text = "회원가입",
-                            type = CustomTextType.bodyLarge,
+                            type = CustomTextType.body,
                             color = Color.Black
                         )
                     }

@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,20 +29,19 @@ fun Step2Content() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 50.dp)
-            .verticalScroll(rememberScrollState())
             .imePadding(),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         CustomText(
             text = "필수정보입력",
-            type = CustomTextType.mainRegularLarge,
+            type = CustomTextType.mainRegular,
             size = 32.sp
         )
         CustomText(
             text = "클릭하여 각 항목에 정보를 입력해주세요.",
             color = CustomColor.gray400,
-            type = CustomTextType.mainRegularSmall,
+            type = CustomTextType.mainRegular,
         )
         Spacer(modifier = Modifier.height(5.dp))
 
@@ -56,7 +53,7 @@ fun Step2Content() {
         ) {
             CustomText(
                 text = "*필수 항목",
-                type = CustomTextType.bodyLarge,
+                type = CustomTextType.body,
                 color = CustomColor.gray300
             )
         }
@@ -78,10 +75,11 @@ fun Step2Content() {
         }
 
         CustomText(
-            text = "거짓 정보 입력시, 큰일남!!",
+            text = "거짓 정보 입력 시 서비스 이용이 제한될 수 있습니다.",
             color = CustomColor.gray300,
-            type = CustomTextType.bodyLarge,
-            modifier = Modifier.padding(horizontal = 7.dp)
+            type = CustomTextType.body,
+            modifier = Modifier.padding(horizontal = 7.dp),
+            size = 14.sp
         )
 
     }
