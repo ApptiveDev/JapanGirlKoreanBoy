@@ -33,6 +33,7 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.apptive.japkor.navigation.Screen
 import com.apptive.japkor.R
 import com.apptive.japkor.ui.components.CustomText
 import com.apptive.japkor.ui.components.CustomTextType
@@ -116,7 +117,7 @@ fun RequiredInfoScreen(
                                     if (currentStep.value < 5) {
                                         currentStep.value += 1
                                     } else {
-                                        navController.navigate("language")
+                                        navController.navigate(Screen.RequiredInfoComplete.route)
                                     }
                                 },
                                 modifier = Modifier
